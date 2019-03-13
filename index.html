@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WSI Iterator Web Component Demo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <script src="wsi-iterator.js"></script>
+    <style>
+        .list-group {
+            margin: 40px auto;
+            max-width: 60%;
+        }
+
+        .custom_color {
+            color: #fff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid mt-4">
+        <h3>Example 1: Using ShadowRoot with default CSS</h3>
+        <wsi-iterator id="original" element="ul" shadow="true" content="[]"></wsi-iterator>
+        <hr />
+        <h3>Example 2: Using ShadowRoot with custom CSS</h3>
+        <div class="custom_color">
+            <wsi-iterator id="custom" element="ul" shadow="true" content="[]"></wsi-iterator>
+        </div>
+        <hr />
+        <h3>Example 3: No ShadowRoot with Bootstrap CSS</h3>
+        <wsi-iterator id="custom1" element="ul" shadow="false" content="[]"></wsi-iterator>
+    </div>
+    <script>
+        (function () {
+            var content =
+                '[{"title": "The Art of War"},{"title": "My Big Fat Greek Wedding"},{"title":"Jurassic Park"}]';
+            var iterator1 = document.getElementById('original');
+            iterator1.setAttribute('content', content);
+            var iterator3 = document.getElementById('custom1');
+            iterator3.setAttribute('content', content);
+            var iterator2 = document.getElementById('custom');
+            iterator2.setAttribute('content', content);
+            var css =
+                `
+                .list-group {
+                    display: -ms-flexbox;
+                    display: flex; 
+                    -ms-flex-direction: row;
+                    flex-direction: row;
+                    padding-left: 0;
+                    margin-bottom: 0;
+                    margin:40px auto;
+                    max-width:90%;
+                    justify-content:space-between;
+                }
+                .list-group-item {
+                    position:relative;
+                    display:block;
+                    padding:.5rem 1rem;
+                    margin-bottom:3px;
+                    background-image: linear-gradient(#ffcc00, #ff9900);
+                    border:4px solid #000;
+                    border-radius:10px;
+                    width:25%;
+                    text-align:center;
+                }`;
+            iterator2.setAttribute("css", css);
+        })();
+    </script>
+</body>
+
+</html>
